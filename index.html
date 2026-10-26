@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="th">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mathematical Logic Studio — พื้นที่เรียนรู้ตรรกศาสตร์ทางคณิตศาสตร์แบบโต้ตอบ</title>
+    <meta
+      name="description"
+      content="เว็บไซต์การเรียนรู้เรื่องตรรกศาสตร์ทางคณิตศาสตร์แบบโต้ตอบ ครอบคลุม 6 บทเรียน ตารางค่าความจริง สัจนิรันดร์ การอ้างเหตุผล ตัวบ่งปริมาณ และอุปนัยเชิงคณิตศาสตร์"
+    />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Inter:wght@300;400;500;600;700;800&family=Prompt:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              teal: {
+                950: '#042f2e',
+              },
+            },
+            fontSize: {
+              '2xs': '0.65rem',
+            },
+          },
+        },
+      };
+    </script>
+
+    <!-- KaTeX CSS and JS -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css"
+      crossorigin="anonymous"
+    />
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.js"
+      crossorigin="anonymous"
+    ></script>
+
+    <!-- Custom App CSS -->
+    <link rel="stylesheet" href="app.css" />
+
+    <!-- React 18 Production UMD -->
+    <script
+      crossorigin
+      src="https://unpkg.com/react@18/umd/react.production.min.js"
+    ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"
+    ></script>
+  </head>
+  <body class="bg-slate-50 text-slate-800 antialiased min-h-screen selection:bg-teal-500 selection:text-white">
+    <div id="root">
+      <div class="min-h-screen flex items-center justify-center p-6 text-center">
+        <div class="space-y-3">
+          <div class="w-12 h-12 rounded-2xl bg-teal-600 text-white flex items-center justify-center font-extrabold text-xl mx-auto animate-pulse">
+            ∧
+          </div>
+          <h2 class="text-lg font-bold text-slate-800">กำลังโหลด Mathematical Logic Studio...</h2>
+          <p class="text-xs text-slate-500">กรุณารอสักครู่ ระบบกำลังจัดเตรียมบทเรียนและเครื่องมือคำนวณ</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Application Scripts -->
+    <script src="logic-engine.js"></script>
+    <script src="logic-data.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
