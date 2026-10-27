@@ -20,14 +20,12 @@ html, body, [class*="css"] {
 /* Top Header transparent so page background shines through */
 header[data-testid="stHeader"] {
     background: transparent !important;
-    pointer-events: none !important;
     z-index: 999990 !important;
     height: 3.5rem !important;
 }
 
 [data-testid="stToolbar"] {
     background: transparent !important;
-    pointer-events: none !important;
 }
 
 /* HIDE ONLY UNWANTED TOP-RIGHT ELEMENTS:
@@ -62,26 +60,41 @@ button[title="View app in GitHub"],
 button[aria-label="Expand sidebar"],
 [data-testid="stSidebarCollapsedControl"],
 [data-testid="collapsedControl"] {
+    position: fixed !important;
+    top: 12px !important;
+    left: 16px !important;
     display: inline-flex !important;
+    align-items: center !important;
     visibility: visible !important;
     pointer-events: auto !important;
     opacity: 1 !important;
-    z-index: 999999 !important;
+    z-index: 9999999 !important;
     background-color: #0f766e !important;
     color: #ffffff !important;
+    border: 1px solid #115e59 !important;
     border-radius: 8px !important;
-    padding: 6px 10px !important;
-    margin: 8px !important;
-    box-shadow: 0 4px 10px rgba(15, 118, 110, 0.35) !important;
+    padding: 6px 14px !important;
+    margin: 0 !important;
+    box-shadow: 0 4px 14px rgba(15, 118, 110, 0.45) !important;
     cursor: pointer !important;
     transition: all 0.2s ease-in-out !important;
+}
+
+[data-testid="stExpandSidebarButton"]::after,
+button[aria-label="Expand sidebar"]::after {
+    content: " ☰ เปิดเมนูหลัก";
+    font-weight: 600;
+    font-size: 0.88rem;
+    color: #ffffff !important;
+    margin-left: 6px;
+    white-space: nowrap;
 }
 
 [data-testid="stExpandSidebarButton"]:hover,
 button[aria-label="Expand sidebar"]:hover {
     background-color: #115e59 !important;
-    transform: scale(1.08) !important;
-    box-shadow: 0 6px 14px rgba(15, 118, 110, 0.45) !important;
+    transform: scale(1.05) !important;
+    box-shadow: 0 6px 18px rgba(15, 118, 110, 0.55) !important;
 }
 
 [data-testid="stExpandSidebarButton"] svg,
@@ -105,7 +118,7 @@ button[aria-label="Collapse sidebar"] {
 
 /* Adjust top padding so content is not obscured by the floating toggle */
 .main .block-container {
-    padding-top: 3.2rem !important;
+    padding-top: 3.5rem !important;
     padding-bottom: 2.5rem !important;
 }
 
