@@ -3,6 +3,7 @@ UI styling and component helpers for the Modern Academic Learning Studio in Stre
 """
 
 import streamlit as st
+import streamlit.components.v1 as components
 
 CUSTOM_CSS = """
 <style>
@@ -369,12 +370,85 @@ iframe[title="manage-app"] {
     padding-bottom: 0.5rem;
     border-radius: 0 6px 6px 0;
 }
+
+/* Zero out the branding remover script container */
+iframe[title="streamlit.components.v1.html"],
+div[data-testid="stCustomComponentV1"] {
+    position: absolute !important;
+    width: 0px !important;
+    height: 0px !important;
+    border: none !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+}
 </style>
+"""
+
+BRANDING_REMOVER_JS = """
+<script>
+function removeStreamlitCloudBadges() {
+    try {
+        const docs = [document];
+        try { if (window.parent && window.parent.document) docs.push(window.parent.document); } catch (e) {}
+        try { if (window.top && window.top.document) docs.push(window.top.document); } catch (e) {}
+
+        docs.forEach(doc => {
+            if (!doc) return;
+
+            // 1. Target anchor links (the chain link icon next to headers)
+            doc.querySelectorAll('[data-testid="stHeaderActionElements"], .stHeadingWithActionElements a').forEach(el => {
+                el.style.display = 'none';
+                el.style.visibility = 'hidden';
+            });
+
+            // 2. Target Manage App button and Streamlit badges
+            doc.querySelectorAll('[class*="viewerBadge"], [data-testid="manage-app-button"], [class*="manageApp"], a[href*="streamlit.io"]').forEach(el => {
+                let cur = el;
+                for (let i = 0; i < 4; i++) {
+                    if (cur && cur.parentElement && cur !== doc.body) {
+                        if (window.getComputedStyle(cur).position === 'fixed') {
+                            cur.style.display = 'none';
+                            cur.style.visibility = 'hidden';
+                            break;
+                        }
+                        cur = cur.parentElement;
+                    }
+                }
+                el.style.display = 'none';
+                el.style.visibility = 'hidden';
+            });
+
+            // 3. Target any element containing text "Hosted with Streamlit" or "Created by"
+            doc.querySelectorAll('div, a, span').forEach(el => {
+                if (el.innerText && (el.innerText.includes('Hosted with Streamlit') || el.innerText.includes('Created by'))) {
+                    let cur = el;
+                    for (let i = 0; i < 4; i++) {
+                        if (cur && cur.parentElement && cur !== doc.body) {
+                            if (window.getComputedStyle(cur).position === 'fixed' || cur.style.position === 'fixed') {
+                                cur.style.display = 'none';
+                                cur.style.visibility = 'hidden';
+                                cur.style.opacity = '0';
+                                break;
+                            }
+                            cur = cur.parentElement;
+                        }
+                    }
+                    el.style.display = 'none';
+                    el.style.visibility = 'hidden';
+                }
+            });
+        });
+    } catch (err) {}
+}
+removeStreamlitCloudBadges();
+setInterval(removeStreamlitCloudBadges, 300);
+</script>
 """
 
 def inject_theme():
     """Injects custom CSS theme into the active Streamlit app."""
     st.markdown(CUSTOM_CSS, unsafe_allow_html=True)
+    components.html(BRANDING_REMOVER_JS, height=0, width=0)
 
 
 def render_sidebar_header():
