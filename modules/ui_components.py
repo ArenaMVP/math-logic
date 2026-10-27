@@ -122,7 +122,28 @@ button[aria-label="Collapse sidebar"] {
     padding-bottom: 2.5rem !important;
 }
 
-/* Hide Bottom-Right Streamlit Badge, Manage App button, Hosted with Streamlit */
+/* =========================================================================
+   HIDE HEADING ANCHOR LINKS (THE 🔗 ICON NEXT TO HEADINGS)
+   ========================================================================= */
+[data-testid="stHeaderActionElements"],
+[data-testid="stHeadingWithActionElements"] a,
+.stHeadingWithActionElements a,
+a.anchorjs-link,
+[data-testid="stHeaderActionElements"] a,
+[data-testid="stHeadingWithActionElements"] button {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+    width: 0px !important;
+    height: 0px !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+/* =========================================================================
+   HIDE BOTTOM-RIGHT STREAMLIT BADGES, AVATAR, STATUS & MANAGE APP
+   ========================================================================= */
 footer,
 footer * {
     display: none !important;
@@ -141,8 +162,18 @@ button[class*="ManageApp"],
 div[class*="viewerBadge"],
 .viewerBadge_container__1QSob,
 .viewerBadge_link__1S137,
-[data-testid="manage-app-button"],
+div[class*="StatusWidget"],
+div[class*="statusWidget"],
+div[data-testid="stStatusWidget"],
+div[class*="Profile"],
+div[class*="profile"],
+div[class*="floating"],
+div[class*="Floating"],
+div[class*="connectionStatus"],
+div[class*="ConnectionStatus"],
+div[data-testid="stConnectionStatus"],
 div[class*="stAppDeployButton"],
+iframe[title*="manage"],
 iframe[title="manage-app"] {
     display: none !important;
     visibility: hidden !important;
