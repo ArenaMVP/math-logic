@@ -126,14 +126,16 @@ for q in QUIZZES["ch6"]:
                 st.success("🎉 ถูกต้องยอดเยี่ยม!")
             else:
                 st.error(f"❌ ยังไม่ถูกต้อง (คำตอบที่ถูกต้องคือ: {q['options'][q['answer_idx']]})")
-            st.info(f"**คำอธิบายเฉลย:** {q['explanation']}")
+            with st.expander("📖 ดูเฉลยและวิธีคิดละเอียด (Step-by-Step Solution)", expanded=True):
+                st.markdown(q["explanation"])
         elif qid in st.session_state["quiz_answers"]:
             ans_info = st.session_state["quiz_answers"][qid]
             if ans_info["is_correct"]:
                 st.success("✅ บันทึกแล้ว: คุณตอบข้อนี้ถูกต้อง")
             else:
                 st.error("❌ บันทึกแล้ว: คุณตอบข้อนี้ยังไม่ถูกต้อง")
-            st.caption(f"เฉลย: {q['explanation']}")
+            with st.expander("📖 ดูเฉลยและวิธีคิดละเอียด (Step-by-Step Solution)", expanded=False):
+                st.markdown(q["explanation"])
 
 st.markdown("---")
 st.caption("ยินดีด้วย! คุณได้ศึกษาเนื้อหาครบทั้ง 6 บทแล้ว สามารถเข้าสู่หน้า Logic Lab เพื่อทดลองเครื่องมือทั้งหมด หรือทำแบบทดสอบรวมได้จากเมนูด้านซ้าย")

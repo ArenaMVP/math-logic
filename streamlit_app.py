@@ -26,6 +26,7 @@ pages = {
         st.Page("views/ch6_induction.py", title="บทที่ 6: Inductive & Deductive", icon="6️⃣"),
     ],
     "ห้องทดลองและแบบประเมิน (Studio & Assessment)": [
+        st.Page("views/formula_summary.py", title="สรุปสูตรทั้งหมด (Formula Sheet)", icon="📐"),
         st.Page("views/logic_lab.py", title="Logic Lab (ห้องทดลองตรรกศาสตร์)", icon="🧪"),
         st.Page("views/quiz.py", title="แบบฝึกหัดและแบบทดสอบ (Quizzes)", icon="✍️"),
         st.Page("views/glossary.py", title="สรุปสัญลักษณ์และนิยามทางตรรกศาสตร์", icon="📚"),

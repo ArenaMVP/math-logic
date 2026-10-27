@@ -14,6 +14,56 @@ html, body, [class*="css"] {
     color: #0f172a;
 }
 
+/* =========================================================================
+   COMPLETELY HIDE STREAMLIT BRANDING, TOOLBAR, FORK, DEPLOY, STATUS, BADGES
+   ========================================================================= */
+/* Hide Top Header Toolbar, Fork button, Deploy button, 3 dots menu */
+header[data-testid="stHeader"],
+header[data-testid="stHeader"] * {
+    display: none !important;
+    visibility: hidden !important;
+    height: 0px !important;
+    max-height: 0px !important;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+[data-testid="stToolbar"],
+[data-testid="stDecoration"],
+[data-testid="stStatusWidget"],
+#MainMenu,
+button[title="View app in GitHub"],
+.stAppDeployButton,
+div[data-testid="stToolbar"] {
+    display: none !important;
+    visibility: hidden !important;
+}
+
+/* Adjust top padding since header is hidden */
+.main .block-container {
+    padding-top: 1.5rem !important;
+    padding-bottom: 2.5rem !important;
+}
+
+/* Hide Bottom-Right Streamlit Badge, Manage App button, Hosted with Streamlit */
+footer,
+footer * {
+    display: none !important;
+    visibility: hidden !important;
+    height: 0px !important;
+}
+
+.viewerBadge_container__1QSob,
+.viewerBadge_link__1S137,
+[data-testid="manage-app-button"],
+div[class*="viewerBadge"],
+div[class*="manageApp"],
+div[class*="stAppDeployButton"],
+iframe[title="manage-app"] {
+    display: none !important;
+    visibility: hidden !important;
+}
+
 /* Sidebar styling */
 [data-testid="stSidebar"] {
     background: linear-gradient(180deg, #f8fafc 0%, #f1f5f9 100%);
@@ -137,6 +187,41 @@ html, body, [class*="css"] {
     border-radius: 6px;
 }
 
+/* Table styling */
+.truth-table-container table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.2rem 0;
+    background-color: #ffffff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+}
+
+.truth-table-container th {
+    background-color: #0f766e;
+    color: #ffffff !important;
+    text-align: center;
+    padding: 10px 14px;
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+.truth-table-container td {
+    padding: 9px 12px;
+    text-align: center;
+    border-bottom: 1px solid #e2e8f0;
+    font-size: 0.95rem;
+}
+
+.truth-table-container tr:nth-child(even) {
+    background-color: #f8fafc;
+}
+
+.truth-table-container tr:hover {
+    background-color: #f0fdfa;
+}
+
 /* Quiz UI */
 .quiz-card {
     background: #ffffff;
@@ -149,21 +234,22 @@ html, body, [class*="css"] {
 .quiz-explanation {
     background-color: #f8fafc;
     border-left: 4px solid #3b82f6;
-    padding: 1rem;
+    padding: 1.2rem;
     border-radius: 0 8px 8px 0;
     margin-top: 1rem;
+    line-height: 1.6;
 }
 
 /* Proof Step Container */
 .proof-step {
-    border-left: 2px solid #0d9488;
+    border-left: 3px solid #0d9488;
     padding-left: 1.2rem;
     margin: 1rem 0;
+    background-color: #f8fafc;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    border-radius: 0 6px 6px 0;
 }
-
-/* Hide streamlit footer watermark */
-#MainMenu {visibility: visible;}
-footer {visibility: hidden;}
 </style>
 """
 
@@ -204,7 +290,7 @@ def render_sidebar_footer():
         st.markdown(f"**📊 ความก้าวหน้าการเรียน:**")
         progress_val = min(1.0, answered / total_questions) if total_questions > 0 else 0
         st.progress(progress_val)
-        st.caption(f"ทำแบบทดสอบแล้ว {answered}/{total_questions} ข้อ (ได้คะแนน {correct}/{answered if answered > 0 else 0})")
+        st.caption(f"ทำแบบทดสอบขั้นสูงแล้ว {answered}/{total_questions} ข้อ (ได้คะแนน {correct}/{answered if answered > 0 else 0})")
         
         if st.button("🔄 รีเซ็ตความก้าวหน้าทั้งหมด", use_container_width=True):
             st.session_state["quiz_answers"] = {}
