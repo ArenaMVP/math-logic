@@ -15,33 +15,97 @@ html, body, [class*="css"] {
 }
 
 /* =========================================================================
-   COMPLETELY HIDE STREAMLIT BRANDING, TOOLBAR, FORK, DEPLOY, STATUS, BADGES
+   CLEAN TOP BAR: HIDE DEPLOY/GITHUB/MENU WHILE PRESERVING SIDEBAR TOGGLE
    ========================================================================= */
-/* Hide Top Header Toolbar, Fork button, Deploy button, 3 dots menu */
-header[data-testid="stHeader"],
-header[data-testid="stHeader"] * {
-    display: none !important;
-    visibility: hidden !important;
-    height: 0px !important;
-    max-height: 0px !important;
-    padding: 0 !important;
-    margin: 0 !important;
+/* Top Header transparent so page background shines through */
+header[data-testid="stHeader"] {
+    background: transparent !important;
+    pointer-events: none !important;
+    z-index: 999990 !important;
+    height: 3.5rem !important;
 }
 
-[data-testid="stToolbar"],
+[data-testid="stToolbar"] {
+    background: transparent !important;
+    pointer-events: none !important;
+}
+
+/* HIDE ONLY UNWANTED TOP-RIGHT ELEMENTS:
+   - Colored decoration bar
+   - Status widget
+   - Deploy button
+   - GitHub view app button
+   - 3-dots MainMenu
+*/
 [data-testid="stDecoration"],
 [data-testid="stStatusWidget"],
-#MainMenu,
-button[title="View app in GitHub"],
+[data-testid="stAppDeployButton"],
 .stAppDeployButton,
-div[data-testid="stToolbar"] {
+div[class*="stAppDeployButton"],
+button[title="View app in GitHub"],
+[data-testid="stToolbarActionButton"],
+#MainMenu,
+[data-testid="stMainMenu"],
+[data-testid="stMainMenuButton"] {
     display: none !important;
     visibility: hidden !important;
+    pointer-events: none !important;
+    width: 0px !important;
+    height: 0px !important;
 }
 
-/* Adjust top padding since header is hidden */
+/* =========================================================================
+   SIDEBAR TOGGLE CONTROLS: ALWAYS ACCESSIBLE, PROMINENT & CLICKABLE
+   ========================================================================= */
+/* The sidebar expand/open button when sidebar is collapsed */
+[data-testid="stExpandSidebarButton"],
+button[aria-label="Expand sidebar"],
+[data-testid="stSidebarCollapsedControl"],
+[data-testid="collapsedControl"] {
+    display: inline-flex !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+    opacity: 1 !important;
+    z-index: 999999 !important;
+    background-color: #0f766e !important;
+    color: #ffffff !important;
+    border-radius: 8px !important;
+    padding: 6px 10px !important;
+    margin: 8px !important;
+    box-shadow: 0 4px 10px rgba(15, 118, 110, 0.35) !important;
+    cursor: pointer !important;
+    transition: all 0.2s ease-in-out !important;
+}
+
+[data-testid="stExpandSidebarButton"]:hover,
+button[aria-label="Expand sidebar"]:hover {
+    background-color: #115e59 !important;
+    transform: scale(1.08) !important;
+    box-shadow: 0 6px 14px rgba(15, 118, 110, 0.45) !important;
+}
+
+[data-testid="stExpandSidebarButton"] svg,
+button[aria-label="Expand sidebar"] svg {
+    fill: #ffffff !important;
+    color: #ffffff !important;
+    stroke: #ffffff !important;
+}
+
+/* The sidebar collapse/close button inside sidebar */
+[data-testid="stSidebarCollapseButton"],
+button[aria-label="Collapse sidebar"] {
+    display: inline-flex !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+    opacity: 1 !important;
+    cursor: pointer !important;
+    border-radius: 6px !important;
+    color: #0f766e !important;
+}
+
+/* Adjust top padding so content is not obscured by the floating toggle */
 .main .block-container {
-    padding-top: 1.5rem !important;
+    padding-top: 3.2rem !important;
     padding-bottom: 2.5rem !important;
 }
 

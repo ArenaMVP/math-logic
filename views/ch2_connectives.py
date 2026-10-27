@@ -138,4 +138,8 @@ for q in QUIZZES["ch2"]:
                 st.markdown(q["explanation"])
 
 st.markdown("---")
-st.caption("สามารถเลือกเรียนบทถัดไป (บทที่ 3: สัจนิรันดร์) ได้จากเมนูทางซ้าย")
+col_prev, col_next = st.columns(2)
+with col_prev:
+    st.page_link("views/ch1_intro.py", label="⬅️ ย้อนกลับ: บทที่ 1 Introduction to Logic", icon="1️⃣")
+with col_next:
+    st.page_link("views/ch3_tautology.py", label="➡️ ไปยังบทเรียนถัดไป: บทที่ 3 Tautologies", icon="3️⃣")

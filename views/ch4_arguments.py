@@ -134,4 +134,8 @@ for q in QUIZZES["ch4"]:
                 st.markdown(q["explanation"])
 
 st.markdown("---")
-st.caption("สามารถเลือกเรียนบทถัดไป (บทที่ 5: ประโยคเปิดและตัวบ่งปริมาณ) ได้จากเมนูทางซ้าย")
+col_prev, col_next = st.columns(2)
+with col_prev:
+    st.page_link("views/ch3_tautology.py", label="⬅️ ย้อนกลับ: บทที่ 3 Tautologies", icon="3️⃣")
+with col_next:
+    st.page_link("views/ch5_quantifiers.py", label="➡️ ไปยังบทเรียนถัดไป: บทที่ 5 Open Sentences & Quantifiers", icon="5️⃣")

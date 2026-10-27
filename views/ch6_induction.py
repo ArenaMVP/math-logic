@@ -138,4 +138,8 @@ for q in QUIZZES["ch6"]:
                 st.markdown(q["explanation"])
 
 st.markdown("---")
-st.caption("ยินดีด้วย! คุณได้ศึกษาเนื้อหาครบทั้ง 6 บทแล้ว สามารถเข้าสู่หน้า Logic Lab เพื่อทดลองเครื่องมือทั้งหมด หรือทำแบบทดสอบรวมได้จากเมนูด้านซ้าย")
+col_prev, col_next = st.columns(2)
+with col_prev:
+    st.page_link("views/ch5_quantifiers.py", label="⬅️ ย้อนกลับ: บทที่ 5 Open Sentences & Quantifiers", icon="5️⃣")
+with col_next:
+    st.page_link("views/formula_summary.py", label="📐 สรุปสูตรทั้งหมด (Formula Sheet)", icon="📐")

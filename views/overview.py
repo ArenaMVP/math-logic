@@ -24,6 +24,15 @@ st.write(
     """
 )
 
+CHAPTER_FILES = {
+    "ch1": "views/ch1_intro.py",
+    "ch2": "views/ch2_connectives.py",
+    "ch3": "views/ch3_tautology.py",
+    "ch4": "views/ch4_arguments.py",
+    "ch5": "views/ch5_quantifiers.py",
+    "ch6": "views/ch6_induction.py",
+}
+
 # Render Chapters Roadmap in expandable cards
 for cid, ch in CHAPTERS.items():
     with st.expander(f"📘 บทที่ {ch['number']}: {ch['title']} ({ch['title_en']})", expanded=(ch['number'] == 1)):
@@ -36,6 +45,10 @@ for cid, ch in CHAPTERS.items():
         st.markdown("**📑 หัวข้อย่อยในบทเรียน:**")
         for sec in ch['sections']:
             st.markdown(f"- `{sec['title']}`")
+        
+        target_page = CHAPTER_FILES.get(cid)
+        if target_page:
+            st.page_link(target_page, label=f"👉 เข้าสู่เนื้อหาบทที่ {ch['number']}: {ch['title']}")
 
 st.markdown("---")
 

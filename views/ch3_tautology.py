@@ -142,4 +142,8 @@ for q in QUIZZES["ch3"]:
                 st.markdown(q["explanation"])
 
 st.markdown("---")
-st.caption("สามารถเลือกเรียนบทถัดไป (บทที่ 4: การอ้างเหตุผล) ได้จากเมนูทางซ้าย")
+col_prev, col_next = st.columns(2)
+with col_prev:
+    st.page_link("views/ch2_connectives.py", label="⬅️ ย้อนกลับ: บทที่ 2 Connectives & Truth Tables", icon="2️⃣")
+with col_next:
+    st.page_link("views/ch4_arguments.py", label="➡️ ไปยังบทเรียนถัดไป: บทที่ 4 Arguments", icon="4️⃣")

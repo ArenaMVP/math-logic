@@ -153,4 +153,8 @@ for q in QUIZZES["ch5"]:
                 st.markdown(q["explanation"])
 
 st.markdown("---")
-st.caption("สามารถเลือกเรียนบทถัดไป (บทที่ 6: การให้เหตุผลแบบอุปนัยและนิรนัย) ได้จากเมนูทางซ้าย")
+col_prev, col_next = st.columns(2)
+with col_prev:
+    st.page_link("views/ch4_arguments.py", label="⬅️ ย้อนกลับ: บทที่ 4 Arguments", icon="4️⃣")
+with col_next:
+    st.page_link("views/ch6_induction.py", label="➡️ ไปยังบทเรียนถัดไป: บทที่ 6 Inductive & Deductive", icon="6️⃣")

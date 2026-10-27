@@ -44,6 +44,15 @@ st.write("เลือกศึกษาบทเรียนตามลำด�
 # Render Chapter Cards in 2 columns
 c_left, c_right = st.columns(2)
 
+CHAPTER_FILES = {
+    "ch1": "views/ch1_intro.py",
+    "ch2": "views/ch2_connectives.py",
+    "ch3": "views/ch3_tautology.py",
+    "ch4": "views/ch4_arguments.py",
+    "ch5": "views/ch5_quantifiers.py",
+    "ch6": "views/ch6_induction.py",
+}
+
 for idx, (cid, ch) in enumerate(CHAPTERS.items()):
     target_col = c_left if idx % 2 == 0 else c_right
     with target_col:
@@ -60,6 +69,9 @@ for idx, (cid, ch) in enumerate(CHAPTERS.items()):
                 """,
                 unsafe_allow_html=True
             )
+            target_page = CHAPTER_FILES.get(cid)
+            if target_page:
+                st.page_link(target_page, label=f"👉 เข้าสู่เนื้อหาบทที่ {ch['number']}: {ch['title']}")
 
 st.markdown("---")
 
