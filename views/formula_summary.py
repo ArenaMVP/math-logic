@@ -85,61 +85,128 @@ with tab_equiv:
 # =========================================================================
 with tab_inf:
     st.markdown("### 🛡️ กฎการอนุมานมาตรฐาน 8 ประการ (Standard Rules of Inference)")
-    st.write("กฎการอนุมานคือรูปแบบสัจนิรันดร์ที่ใช้ในการก้าวจากเหตุ (Premises) ไปสู่ข้อสรุป (Conclusion):")
+    st.info(
+        "💡 **กฎการอนุมาน (Rules of Inference) คืออะไร?**\n\n"
+        "กฎการอนุมานคือ **แบบแผนการอ้างเหตุผลที่ถูกต้อง (Valid Argument Forms)** ซึ่งเป็นสัจนิรันดร์ (Tautology) "
+        "นำมาใช้ใน **การพิสูจน์ทางคณิตศาสตร์ (Formal Proof)** เพื่อก้าวจากเหตุ (Premises) ที่ทราบค่าความจริง "
+        "ไปสู่ข้อสรุปใหม่ (Conclusion) โดยไม่ต้องเสียเวลาสร้างตารางค่าความจริงขนาดใหญ่"
+    )
     
     col_i1, col_i2 = st.columns(2)
     
     with col_i1:
-        st.markdown(
-            r"""
-            <div class="academic-card">
-                <h4>1. Modus Ponens (MP)</h4>
-                $$\begin{aligned} &P \to Q \\ &P \\ \hline \therefore &Q \end{aligned}$$
-                <small>สูตรสัจนิรันดร์: $[(P \to Q) \land P] \to Q$</small>
-            </div>
-            <div class="academic-card">
-                <h4>2. Modus Tollens (MT)</h4>
-                $$\begin{aligned} &P \to Q \\ &\neg Q \\ \hline \therefore &\neg P \end{aligned}$$
-                <small>สูตรสัจนิรันดร์: $[(P \to Q) \land \neg Q] \to \neg P$</small>
-            </div>
-            <div class="academic-card">
-                <h4>3. Hypothetical Syllogism (HS)</h4>
-                $$\begin{aligned} &P \to Q \\ &Q \to R \\ \hline \therefore &P \to R \end{aligned}$$
-                <small>การถ่ายทอดลูกโซ่: $[(P \to Q) \land (Q \to R)] \to (P \to R)$</small>
-            </div>
-            <div class="academic-card">
-                <h4>4. Disjunctive Syllogism (DS)</h4>
-                $$\begin{aligned} &P \lor Q \\ &\neg P \\ \hline \therefore &Q \end{aligned}$$
-                <small>การตัดทางเลือก: $[(P \lor Q) \land \neg P] \to Q$</small>
-            </div>
-            """,
-            unsafe_allow_html=True
-        )
-        
+        with st.container(border=True):
+            st.markdown("#### 1. Modus Ponens (MP - กฎการยืนยันเหตุ)")
+            st.latex(r"""
+            \begin{array}{cl}
+            & P \to Q \\
+            & P \\
+            \hline
+            \therefore & Q
+            \end{array}
+            """)
+            st.markdown(r"**คำอธิบาย:** ถ้ารู้ว่าเหตุ $P$ นำไปสู่ผล $Q$ และตัวเหตุ $P$ เกิดขึ้นจริง สรุปได้ทันทีว่าผล $Q$ ต้องเกิดขึ้นจริงตาม")
+            st.caption(r"สูตรสัจนิรันดร์: $[(P \to Q) \land P] \to Q$")
+
+        with st.container(border=True):
+            st.markdown("#### 2. Modus Tollens (MT - กฎการปฏิเสธผล)")
+            st.latex(r"""
+            \begin{array}{cl}
+            & P \to Q \\
+            & \neg Q \\
+            \hline
+            \therefore & \neg P
+            \end{array}
+            """)
+            st.markdown(r"**คำอธิบาย:** ถ้ารู้ว่า $P$ นำไปสู่ $Q$ แต่ตรวจพบว่าผล $Q$ ไม่จริง ย่อมสรุปได้แน่นอนว่าเหตุ $P$ ต้องไม่เป็นจริงตั้งแต่แรก")
+            st.caption(r"สูตรสัจนิรันดร์: $[(P \to Q) \land \neg Q] \to \neg P$")
+
+        with st.container(border=True):
+            st.markdown("#### 3. Hypothetical Syllogism (HS - การถ่ายทอดลูกโซ่)")
+            st.latex(r"""
+            \begin{array}{cl}
+            & P \to Q \\
+            & Q \to R \\
+            \hline
+            \therefore & P \to R
+            \end{array}
+            """)
+            st.markdown(r"**คำอธิบาย:** การส่งต่อเหตุผลแบบลูกโซ่ ถ้า $P$ ส่งผลให้เกิด $Q$ และ $Q$ ส่งผลให้เกิด $R$ ดังนั้น $P$ ย่อมส่งผลให้เกิด $R$")
+            st.caption(r"สูตรสัจนิรันดร์: $[(P \to Q) \land (Q \to R)] \to (P \to R)$")
+
+        with st.container(border=True):
+            st.markdown("#### 4. Disjunctive Syllogism (DS - การตัดทางเลือก)")
+            st.latex(r"""
+            \begin{array}{cl}
+            & P \lor Q \\
+            & \neg P \\
+            \hline
+            \therefore & Q
+            \end{array}
+            """)
+            st.markdown(r"**คำอธิบาย:** ในสองทางเลือก $P$ หรือ $Q$ ถ้าตรวจสอบแล้วพบว่า $P$ ไม่จริง ทางเลือกที่เหลือ $Q$ จะต้องเป็นจริงแน่นอน")
+            st.caption(r"สูตรสัจนิรันดร์: $[(P \lor Q) \land \neg P] \to Q$")
+            
     with col_i2:
-        st.markdown(
-            r"""
-            <div class="academic-card">
-                <h4>5. Constructive Dilemma (CD)</h4>
-                $$\begin{aligned} &(P \to Q) \land (R \to S) \\ &P \lor R \\ \hline \therefore &Q \lor S \end{aligned}$$
-                <small>สองทางเลือกนำไปสู่ผลสองทาง</small>
-            </div>
-            <div class="academic-card">
-                <h4>6. Simplification (Simp) & Conjunction (Conj)</h4>
-                $$\begin{aligned} &P \land Q \\ \hline \therefore &P \end{aligned} \qquad \begin{aligned} &P \\ &Q \\ \hline \therefore &P \land Q \end{aligned}$$
-            </div>
-            <div class="academic-card">
-                <h4>7. Addition (Add)</h4>
-                $$\begin{aligned} &P \\ \hline \therefore &P \lor Q \end{aligned}$$
-            </div>
-            <div class="academic-card">
-                <h4>8. Resolution (หลักการโซลูชัน)</h4>
-                $$\begin{aligned} &P \lor Q \\ &\neg P \lor R \\ \hline \therefore &Q \lor R \end{aligned}$$
-                <small>รากฐานของ Automated Theorem Proving</small>
-            </div>
-            """,
-            unsafe_allow_html=True
-        )
+        with st.container(border=True):
+            st.markdown("#### 5. Constructive Dilemma (CD - สองทางเลือกสองผล)")
+            st.latex(r"""
+            \begin{array}{cl}
+            & (P \to Q) \land (R \to S) \\
+            & P \lor R \\
+            \hline
+            \therefore & Q \lor S
+            \end{array}
+            """)
+            st.markdown(r"**คำอธิบาย:** มีเงื่อนไขคู่ขนานสองชุด หากเรารู้ว่าต้นเหตุตัวใดตัวหนึ่งเกิดขึ้น ผลลัพธ์ตัวใดตัวหนึ่งก็ย่อมเกิดขึ้นตาม")
+            st.caption(r"สูตรสัจนิรันดร์: $[((P \to Q) \land (R \to S)) \land (P \lor R)] \to (Q \lor S)$")
+
+        with st.container(border=True):
+            st.markdown("#### 6. Simplification & Conjunction (การลดทอนและการรวม)")
+            st.latex(r"""
+            \begin{array}{cc}
+            \text{[Simplification]} & \text{[Conjunction]} \\
+            \begin{array}{cl}
+            & P \land Q \\
+            \hline
+            \therefore & P
+            \end{array}
+            &
+            \begin{array}{cl}
+            & P \\
+            & Q \\
+            \hline
+            \therefore & P \land Q
+            \end{array}
+            \end{array}
+            """)
+            st.markdown(r"**คำอธิบาย:** ถ้ารู้ว่า $P \land Q$ จริง ย่อมดึงเฉพาะ $P$ มาใช้ได้ (Simp) และถ้ามีข้อเท็จจริง $P$ กับ $Q$ แยกกัน ก็จับมารวมเป็น $P \land Q$ ได้ (Conj)")
+            st.caption(r"สูตรสัจนิรันดร์: $(P \land Q) \to P \quad \text{และ} \quad (P \land Q) \to (P \land Q)$")
+
+        with st.container(border=True):
+            st.markdown("#### 7. Addition (Add - กฎการเพิ่มทางเลือก)")
+            st.latex(r"""
+            \begin{array}{cl}
+            & P \\
+            \hline
+            \therefore & P \lor Q
+            \end{array}
+            """)
+            st.markdown(r"**คำอธิบาย:** เมื่อ $P$ เป็นจริงแล้ว การนำประพจน์ $Q$ ใดๆ มาเชื่อมด้วย 'หรือ' ย่อมเป็นจริงเสมอ")
+            st.caption(r"สูตรสัจนิรันดร์: $P \to (P \lor Q)$")
+
+        with st.container(border=True):
+            st.markdown("#### 8. Resolution (หลักการโซลูชัน)")
+            st.latex(r"""
+            \begin{array}{cl}
+            & P \lor Q \\
+            & \neg P \lor R \\
+            \hline
+            \therefore & Q \lor R
+            \end{array}
+            """)
+            st.markdown(r"**คำอธิบาย:** เมื่อมีประพจน์แย้งกัน ($P$ กับ $\neg P$) ในสองข้อความที่เป็น 'หรือ' สามารถตัดคู่แย้งออกแล้วรวบข้อความที่เหลือเข้าด้วยกัน (รากฐานของระบบ Automatic Reasoning & AI)")
+            st.caption(r"สูตรสัจนิรันดร์: $[(P \lor Q) \land (\neg P \lor R)] \to (Q \lor R)$")
 
 # =========================================================================
 # TAB 3: QUANTIFIER LAWS
