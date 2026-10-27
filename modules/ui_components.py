@@ -53,15 +53,26 @@ footer * {
     height: 0px !important;
 }
 
+#manage-app-button,
+[data-testid="manage-app-button"],
+div[class*="manageApp"],
+div[class*="ManageApp"],
+div[class*="manage-app"],
+div[class*="Manage-app"],
+button[class*="manageApp"],
+button[class*="ManageApp"],
+div[class*="viewerBadge"],
 .viewerBadge_container__1QSob,
 .viewerBadge_link__1S137,
 [data-testid="manage-app-button"],
-div[class*="viewerBadge"],
-div[class*="manageApp"],
 div[class*="stAppDeployButton"],
 iframe[title="manage-app"] {
     display: none !important;
     visibility: hidden !important;
+    opacity: 0 !important;
+    height: 0px !important;
+    width: 0px !important;
+    pointer-events: none !important;
 }
 
 /* Sidebar styling */
